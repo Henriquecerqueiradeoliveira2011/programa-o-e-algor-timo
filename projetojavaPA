@@ -1,0 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package projetojavapa;
+
+/**
+ *
+ * @author Admin
+ */
+public class ProjetojavaPa {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       int a=10;
+      int b=20;
+      int c=30;
+     int delta=-b*b-4*a*c;
+      System.out.println ("Delta:"+delta);
