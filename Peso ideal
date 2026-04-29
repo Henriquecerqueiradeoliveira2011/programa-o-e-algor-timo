@@ -1,0 +1,16 @@
+import javax.swing.JOptionPane;
+
+public class Main {
+    public static void main(String[] args) {
+         String sexo = JOptionPane.showInputDialog(null, "Digite o seu sexo, M para masculino e F para feminino");
+         double alt = Double.parseDouble(JOptionPane.showInputDialog(null,"Digite a sua altura em metros"));
+         if (sexo.equals( "M")){
+             double pesom = (72.7 *alt)-58;
+             JOptionPane.showMessageDialog(null, "O seu peso ideal é " +pesom);
+         }
+         if (sexo.equals("F")) {
+             double pesof = (62.1 * alt)-44.7;
+             JOptionPane.showMessageDialog(null,"O seu peso ideal é " +pesof);
+         }
+    }
+}
