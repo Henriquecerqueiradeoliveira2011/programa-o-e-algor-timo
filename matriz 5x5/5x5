@@ -1,0 +1,134 @@
+import javax.swing.*;
+
+public class Matriz5x5 {
+    public static void main(String[] args) {
+        JOptionPane.showMessageDialog(null, "Operações com matrizes 5x5");
+
+        int[][] A = new int[5][5];
+
+        int[][] B = new int[5][5];
+
+        double[][] C = new double [5][5];
+
+        //Essas Strings estão sendo usadas para dar o espaçamento e para aparecer linhas e colunas no JOptionOane.showMessageDialog
+        String matrizA = "--- Matriz A resultado --- \n\n";
+        String matrizB = "--- Matriz B resultado --- \n\n";
+        String matrizC = "--- Matriz B resultado --- \n\n";
+
+
+        JOptionPane.showMessageDialog(null, "Preencha a Matriz A");
+        //Usei o A.length para definir a quantidades de linhas e colunas, que no caso é 5x5
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A.length; j++) {
+                //O usuário irá digitar os numeros da matriz, e depois essas Strings serão convertidas em números inteiros (int)
+                A[i][j] = Integer.parseInt
+                        (JOptionPane.
+                                showInputDialog
+                                        (null,
+                                                "Digite os números da Matriz A [" + i + "] [" + j + "]"));
+                matrizA += A[i][j] + " \t\t ";
+            }
+            matrizA += "\n";
+        }
+
+        JOptionPane.showMessageDialog(null, "Preencha a Matriz B");
+        for (int i = 0; i < B.length; i++) {
+            for (int j = 0; j < B.length; j++) {
+                B[i][j] = Integer.parseInt
+                        (JOptionPane.
+                                showInputDialog
+                                        (null,
+                                                "Digite os números da Matriz B [" + i + "] [" + j + "]"));
+                matrizB += B[i][j] + " \t\t ";
+            }
+            matrizB += "\n";
+        }
+        JOptionPane.showMessageDialog(null, matrizA);
+        JOptionPane.showMessageDialog(null, matrizB);
+
+        //Array para fazer as as opções no JOptionPane.showOptionsDialog
+        String[] operacoes = {"Adição","Subtração","Multiplicação","Divisão"};
+
+
+
+        int escolha = JOptionPane.showOptionDialog(
+                null,
+                "Escolha uma das operações para a matriz 5x5",
+                "Menu de operações",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                operacoes,
+                operacoes[0]
+        );
+        //Operação de adição
+        if (escolha == 0) {
+            for (int i = 0; i < C.length; i++) {
+                for (int j = 0; j < C.length; j++) {
+                    C[i][j] = A[i][j] + B[i][j];
+                    matrizC += C[i][j] + " \t\t ";
+                }
+                matrizC += "\n";
+            }
+            //Mostra a matriz C, que recebe da operação de adição
+            JOptionPane.showMessageDialog(null, "Resultado da adição\n " + matrizC);
+        }
+        //Operação de subtração
+        else if (escolha==1){
+            for (int i = 0; i < C.length; i++) {
+                for (int j = 0; j < C.length; j++) {
+                    C[i][j] = A[i][j] - B[i][j];
+                    matrizC += C[i][j] + "  \t\t  ";
+                }
+                matrizC += "\n";
+            }
+            //Mostra a matriz C, que recebe da operação de subtração
+            JOptionPane.showMessageDialog(null, "Resultado da subtração\n " + matrizC);
+        }
+        //Operação de Multiplicação
+        else if (escolha==2){
+            for (int i = 0; i < C.length; i++) {
+                for (int j = 0; j < C.length; j++) {
+                    /*Multiplicação em raizes só acontece quando a quantidade de colunas da primeira matriz é igual
+                    a quantidade de linhas da segunda matriz, logo toda matriz quadrada é possivel multiplicar
+                     */
+
+                    C[i][j] = A[i][j] * B[i][j];
+                    matrizC += C[i][j] + "  \t\t  ";
+                }
+                matrizC += "\n";
+            }
+            //Mostra a matriz C, que recebe da operação de multiplicacão
+            JOptionPane.showMessageDialog(null, "Resultado da multiplicação\n " + matrizC);
+        }
+      //Operação de divisão
+        else if (escolha==3){
+            for (int i = 0; i < C.length; i++) {
+                for (int j = 0; j < C.length; j++) {
+                    if ( A[i][j] == 0){
+                        //Verifica se tem 0 na matriz A e Matriz B
+                        JOptionPane.showMessageDialog(null,"Erro na divisão por conta do número zero em na matriz");
+                        return;
+                    } else if (B[i][j]==0){
+                        JOptionPane.showMessageDialog(null,"Erro na divisão por conta do número zero em na matriz");
+                        return;
+                    }
+
+                    C [i][j] = (double) A[i][j]/B[i][j];
+
+                    matrizC += C[i][j] + "  \t\t  ";
+
+                }
+                matrizC += "\n";
+            }
+            //Mostra a matriz C, que recebe da operação de divisão
+            JOptionPane.showMessageDialog(null, "Resultado da divisão\n " + matrizC);
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Programa encerrado");
+            return;
+        }
+
+    }
+}
+
