@@ -1,0 +1,169 @@
+import javax.swing.JOptionPane;
+
+public class Matrizretangular {
+    public static void main(String[] args) {
+        //Mensagem inicial
+        JOptionPane.showMessageDialog(null, "Operações com matrizes");
+        //Input com JOptionPane para definir a quantidades de linhas da matriz A
+        int linhasa = Integer.parseInt(JOptionPane.showInputDialog
+                (null, "----MATRIZ A----\n" +
+                        "Digite a quantidade de linhas"));
+        //Input com JOptionPane para definir a quantidades de colunas da matriz A
+        int colunasa = Integer.parseInt(JOptionPane.showInputDialog
+                (null, "----MATRIZ A----\n" +
+                        "Digite a quantidade de colunas"));
+        //Declaração da matriz A
+        int[][] A = new int[linhasa][colunasa];
+        //String para exibir a matriz A
+        String matriz_a_exibicao = "----MATRIZ A EXIBIÇÃO---- \n\n";
+        //String para mostrar o resultado da matriz A
+        String matriz_a_resultado = "----MATRIZ A RESULTADO---- \n\n";
+        //for para i (linhas) e j(colunas)
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A[i].length; j++) {
+                A[i][j] = Integer.parseInt
+                        (JOptionPane.showInputDialog
+                                (null, "Digite os números da MATRIZ A: \n\n [" + i + "] [" + j + "] "));
+                matriz_a_exibicao += A[i][j] + " \t\t ";
+            }
+            matriz_a_exibicao += " \n ";
+        }
+        JOptionPane.showMessageDialog(null, matriz_a_exibicao);
+
+        int linhasb = Integer.parseInt(JOptionPane.showInputDialog
+                (null, "----MATRIZ B----\n" +
+                        "Digite a quantidade de linhas"));
+
+        int colunasb = Integer.parseInt(JOptionPane.showInputDialog
+                (null, "----MATRIZ B----\n" +
+                        "Digite a quantidade de colunas"));
+
+        int[][] B = new int[linhasb][colunasb];
+
+        String matriz_b_exibicao = "----MATRIZ B EXIBIÇÃO---- \n\n";
+        String matriz_b_resultado = "----MATRIZ B RESULTADO---- \n\n";
+
+        for (int i = 0; i < B.length; i++) {
+            for (int j = 0; j < B[i].length; j++) {
+                B[i][j] = Integer.parseInt
+                        (JOptionPane.showInputDialog
+                                (null, "Digite os números da MATRIZ B: \n\n [" + i + "] [" + j + "] "));
+                matriz_b_exibicao += B[i][j] + " \t\t ";
+            }
+            matriz_b_exibicao += " \n ";
+        }
+        JOptionPane.showMessageDialog(null, matriz_b_exibicao);
+
+        String matriz_c_resultado = "----Matriz C RESULTADO---- \n\n";
+
+        //Aray com as opções das operações
+        String[] operaçoes = {"Adição", "Subtração", "Multiplicação", "Divisão"};
+
+
+        int escolha = JOptionPane.showOptionDialog(null,
+                "Escolha uma operação",
+                "Operações com matrizes",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                operaçoes,
+                operaçoes[0]
+        );
+        //Switch avalia a variavel 'escolha'
+        //Cada case representa uma operação matemática
+        /*Cada número é o valor correspondente ao índice do aray
+        Adição índice 0, subtração índice 1 e assim por diante
+         */
+        switch (escolha) {
+            case 0:
+                if (linhasa != linhasb || colunasa != colunasb) {
+                    JOptionPane.showMessageDialog(null, "erro na operação \n" +
+                            "As duas matrizes precisam ter o mesmo tamanho para adição!");
+                    return;
+                } else {
+                    double[][] C = new double[linhasa][colunasa];
+                    for (int i = 0; i < C.length; i++) {
+                        for (int j = 0; j < C[i].length; j++) {
+                            C[i][j] = A[i][j] + B[i][j];
+                            matriz_c_resultado += C[i][j] + " \t\t ";
+
+                        }
+                        matriz_c_resultado += " \n ";
+                    }
+                    JOptionPane.showMessageDialog(null, "Resultado da adição " + matriz_c_resultado);
+
+                }
+                break;
+            case 1:
+                if (linhasa != linhasb || colunasa != colunasb) {
+                    JOptionPane.showMessageDialog(null, "Erro na operação\n" +
+                            "As duas matrizes precisam ter o mesmo tamanho para subtração!");
+                    return;
+                } else {
+                    double[][] C = new double[linhasa][colunasa];
+                    for (int i = 0; i < C.length; i++) {
+                        for (int j = 0; j < C[i].length; j++) {
+                            C[i][j] = A[i][j] - B[i][j];
+                            matriz_c_resultado += C[i][j] + " \t\t ";
+
+                        }
+                        matriz_c_resultado += " \n ";
+                    }
+                    JOptionPane.showMessageDialog(null, "Resultado da subtração " + matriz_c_resultado);
+
+                }
+                break;
+            case 2:
+                if (colunasa != linhasb) {
+                    JOptionPane.showMessageDialog(null, "Erro na operação\n" +
+                            "A quantidade de colunas da MATRIZ A precisa ser igual a quantidade de linhas da MATRIZ B   ");
+                    return;
+
+                } else {
+                    double[][] C = new double[linhasa][colunasb];
+                    for (int i = 0; i < linhasa; i++) {
+                        for (int j = 0; j < colunasb; j++) {
+                            C[i][j] = 0;
+                            //k faz o movimento das colunas e linhas
+                            for (int k = 0; k < colunasa; k++) {
+                                C[i][j] += A[i][k] * B[k][j];
+                            }
+                            matriz_c_resultado += C[i][j] + " \t\t ";
+                        }
+                        matriz_c_resultado += " \n ";
+                    }
+                    JOptionPane.showMessageDialog(null, "Resultado da multiplicação " + matriz_c_resultado);
+                }
+                break;
+            case 3:
+                if (linhasa != linhasb || colunasa != colunasb) {
+                    JOptionPane.showMessageDialog(null, "Erro na operação\n" +
+                            "As duas matrizes precisam ter o mesmo tamanho para a divisão!");
+                    return;
+                }
+
+
+                double[][] C = new double[linhasa][colunasa];
+                for (int i = 0; i < C.length; i++) {
+                    for (int j = 0; j < C[i].length; j++) {
+                        if (B[i][j] == 0) {
+                            JOptionPane.showMessageDialog(null, "Erro na divisão por conta de 0 na posição na MATRIZ B");
+                            return;
+                        }
+                        C[i][j] = (double) A[i][j] / B[i][j];
+                        matriz_c_resultado += C[i][j] + " \t\t ";
+
+
+
+                    }
+                    matriz_c_resultado += " \n ";
+
+                }
+                JOptionPane.showMessageDialog(null, "Resultado da divisão " + matriz_c_resultado);
+                break;
+
+
+        }
+    }
+}
+
